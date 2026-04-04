@@ -1,0 +1,2349 @@
+{
+  "tournament": {
+    "name": "2026 Rehmer-Bauman NCAA Tournament",
+    "year": 2026,
+    "lastUpdated": "2026-04-04T12:00:00Z",
+    "totalGames": 63,
+    "gamesPlayed": 60,
+    "roundsCompleted": 4,
+    "status": "Final Four Tonight!"
+  },
+  "scoring": {
+    "round1": 1,
+    "round2": 2,
+    "round3": 4,
+    "round4": 8,
+    "round5": 10,
+    "round6": 12,
+    "maxScore": 160
+  },
+  "rounds": [
+    {
+      "id": 1,
+      "name": "Round of 64",
+      "shortName": "R64",
+      "games": 32,
+      "pointsPer": 1,
+      "completed": true
+    },
+    {
+      "id": 2,
+      "name": "Round of 32",
+      "shortName": "R32",
+      "games": 16,
+      "pointsPer": 2,
+      "completed": true
+    },
+    {
+      "id": 3,
+      "name": "Sweet 16",
+      "shortName": "S16",
+      "games": 8,
+      "pointsPer": 4,
+      "completed": true
+    },
+    {
+      "id": 4,
+      "name": "Elite 8",
+      "shortName": "E8",
+      "games": 4,
+      "pointsPer": 8,
+      "completed": true
+    },
+    {
+      "id": 5,
+      "name": "Final Four",
+      "shortName": "F4",
+      "games": 2,
+      "pointsPer": 10,
+      "completed": false
+    },
+    {
+      "id": 6,
+      "name": "Championship",
+      "shortName": "NCG",
+      "games": 1,
+      "pointsPer": 12,
+      "completed": false
+    }
+  ],
+  "finalFour": {
+    "teams": [
+      "UConn",
+      "Arizona",
+      "Illinois",
+      "Michigan"
+    ],
+    "semifinal1": {
+      "team1": "UConn (East, #2)",
+      "team2": "Illinois (South, #3)",
+      "time": "6:09 PM ET"
+    },
+    "semifinal2": {
+      "team1": "Arizona (West, #1)",
+      "team2": "Michigan (Midwest, #1)",
+      "time": "8:49 PM ET"
+    },
+    "championship": {
+      "date": "April 7, 2026",
+      "time": "9:20 PM ET"
+    },
+    "venue": "Lucas Oil Stadium, Indianapolis"
+  },
+  "prizes": {
+    "buyIn": 10,
+    "totalPot": 630,
+    "placement": [
+      {
+        "place": "1st Place",
+        "amount": 109
+      },
+      {
+        "place": "2nd Place",
+        "amount": 100
+      },
+      {
+        "place": "3rd Place",
+        "amount": 70
+      },
+      {
+        "place": "4th Place",
+        "amount": 40
+      },
+      {
+        "place": "5th Place",
+        "amount": 35
+      },
+      {
+        "place": "6th Place",
+        "amount": 30
+      },
+      {
+        "place": "7th Place",
+        "amount": 25
+      }
+    ],
+    "roundBonuses": [
+      {
+        "round": "1st Round",
+        "amount": 30,
+        "winners": [
+          "Mike McInerney",
+          "Tej Shah"
+        ],
+        "value": 28,
+        "splitAmount": 15.0
+      },
+      {
+        "round": "2nd Round",
+        "amount": 25,
+        "winners": [
+          "Richard"
+        ],
+        "value": 14,
+        "splitAmount": 25
+      },
+      {
+        "round": "3rd Round",
+        "amount": 25,
+        "winners": [
+          "Larry Magera"
+        ],
+        "value": 6,
+        "splitAmount": 25
+      },
+      {
+        "round": "4th Round",
+        "amount": 25,
+        "winners": [
+          "Larry Magera",
+          "Todd B.",
+          "Kent Rehmer",
+          "Ben Curran"
+        ],
+        "value": 3,
+        "splitAmount": 6.25
+      }
+    ],
+    "regionBonuses": [
+      {
+        "region": "East",
+        "amount": 25,
+        "winners": [
+          "Heidi"
+        ],
+        "value": 30,
+        "splitAmount": 25
+      },
+      {
+        "region": "West",
+        "amount": 25,
+        "winners": [
+          "Mike McInerney"
+        ],
+        "value": 31,
+        "splitAmount": 25
+      },
+      {
+        "region": "South",
+        "amount": 25,
+        "winners": [
+          "Norm"
+        ],
+        "value": 25,
+        "splitAmount": 25
+      },
+      {
+        "region": "Midwest",
+        "amount": 25,
+        "winners": [
+          "Todd B."
+        ],
+        "value": 30,
+        "splitAmount": 25
+      }
+    ],
+    "roundBoobyPrizes": [
+      {
+        "round": "1st Round",
+        "amount": 2,
+        "winners": [
+          "Tyler",
+          "Chance",
+          "Neel",
+          "Ken Burckardt",
+          "Nate",
+          "Caroline Burckardt"
+        ],
+        "value": 21
+      },
+      {
+        "round": "2nd Round",
+        "amount": 2,
+        "winners": [
+          "Neel"
+        ],
+        "value": 5
+      },
+      {
+        "round": "3rd Round",
+        "amount": 2,
+        "winners": [
+          "Tej Shah",
+          "Emelio Prieto",
+          "Paul Gurgos",
+          "Kristin Lange",
+          "Cam Humphreys",
+          "Surje P",
+          "Garv Patel",
+          "John Skwirblies",
+          "Rob",
+          "Ben",
+          "Jeff Platt",
+          "Bob",
+          "Spencer",
+          "Ken Burckardt",
+          "Kennedy Burckardt",
+          "Julian",
+          "Nate",
+          "Lizzie",
+          "Caroline Burckardt"
+        ],
+        "value": 0
+      }
+    ],
+    "consolationPrizes": [
+      {
+        "category": "First Final Four Team Lost",
+        "amount": 5,
+        "winner": "TBD"
+      },
+      {
+        "category": "First Champion Lost",
+        "amount": 5,
+        "winner": "TBD"
+      }
+    ]
+  },
+  "participants": [
+    {
+      "rank": 1,
+      "name": "Larry Magera",
+      "avatar": "LM",
+      "totalPoints": 92,
+      "maxPossible": 114,
+      "roundScores": [
+        24,
+        20,
+        24,
+        24,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        24,
+        10,
+        6,
+        3,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 20,
+        "West": 24,
+        "South": 23,
+        "Midwest": 25
+      },
+      "champion": "Arizona",
+      "championAlive": true,
+      "tiebreaker": 145,
+      "hasSheet": true
+    },
+    {
+      "rank": 2,
+      "name": "Todd B.",
+      "avatar": "TB",
+      "totalPoints": 91,
+      "maxPossible": 101,
+      "roundScores": [
+        27,
+        20,
+        20,
+        24,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        27,
+        10,
+        5,
+        3,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 29,
+        "West": 21,
+        "South": 11,
+        "Midwest": 30
+      },
+      "champion": "Houston",
+      "championAlive": false,
+      "tiebreaker": 85,
+      "hasSheet": true
+    },
+    {
+      "rank": 3,
+      "name": "Kent Rehmer",
+      "avatar": "KR",
+      "totalPoints": 88,
+      "maxPossible": 120,
+      "roundScores": [
+        24,
+        20,
+        20,
+        24,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        24,
+        10,
+        5,
+        3,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 28,
+        "West": 25,
+        "South": 11,
+        "Midwest": 24
+      },
+      "champion": "Arizona",
+      "championAlive": true,
+      "tiebreaker": 123,
+      "hasSheet": true
+    },
+    {
+      "rank": 4,
+      "name": "Ben Curran",
+      "avatar": "BC",
+      "totalPoints": 83,
+      "maxPossible": 105,
+      "roundScores": [
+        23,
+        24,
+        12,
+        24,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        23,
+        12,
+        3,
+        3,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 25,
+        "West": 23,
+        "South": 9,
+        "Midwest": 26
+      },
+      "champion": "Arizona",
+      "championAlive": true,
+      "tiebreaker": 168,
+      "hasSheet": true
+    },
+    {
+      "rank": 5,
+      "name": "Tara",
+      "avatar": "TA",
+      "totalPoints": 82,
+      "maxPossible": 92,
+      "roundScores": [
+        24,
+        22,
+        20,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        24,
+        11,
+        5,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 21,
+        "West": 28,
+        "South": 9,
+        "Midwest": 24
+      },
+      "champion": "Houston",
+      "championAlive": false,
+      "tiebreaker": 136,
+      "hasSheet": true
+    },
+    {
+      "rank": 6,
+      "name": "Richard",
+      "avatar": "RI",
+      "totalPoints": 81,
+      "maxPossible": 103,
+      "roundScores": [
+        25,
+        28,
+        20,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        14,
+        5,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 18,
+        "West": 30,
+        "South": 14,
+        "Midwest": 19
+      },
+      "champion": "Arizona",
+      "championAlive": true,
+      "tiebreaker": 135,
+      "hasSheet": true
+    },
+    {
+      "rank": 7,
+      "name": "Phil Nuccio",
+      "avatar": "PN",
+      "totalPoints": 80,
+      "maxPossible": 90,
+      "roundScores": [
+        24,
+        24,
+        16,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        24,
+        12,
+        4,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 17,
+        "West": 26,
+        "South": 12,
+        "Midwest": 25
+      },
+      "champion": "Duke",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": true
+    },
+    {
+      "rank": 8,
+      "name": "Liz B",
+      "avatar": "LB",
+      "totalPoints": 79,
+      "maxPossible": 89,
+      "roundScores": [
+        27,
+        24,
+        12,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        27,
+        12,
+        3,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 28,
+        "West": 11,
+        "South": 23,
+        "Midwest": 17
+      },
+      "champion": "Kentucky",
+      "championAlive": false,
+      "tiebreaker": 77,
+      "hasSheet": true
+    },
+    {
+      "rank": 9,
+      "name": "Deanne Rehmer",
+      "avatar": "DR",
+      "totalPoints": 78,
+      "maxPossible": 100,
+      "roundScores": [
+        24,
+        26,
+        20,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        24,
+        13,
+        5,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 18,
+        "West": 28,
+        "South": 14,
+        "Midwest": 18
+      },
+      "champion": "Arizona",
+      "championAlive": true,
+      "tiebreaker": 120,
+      "hasSheet": true
+    },
+    {
+      "rank": 10,
+      "name": "Mike McInerney",
+      "avatar": "MM",
+      "totalPoints": 78,
+      "maxPossible": 78,
+      "roundScores": [
+        28,
+        22,
+        20,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        28,
+        11,
+        5,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 20,
+        "West": 31,
+        "South": 12,
+        "Midwest": 15
+      },
+      "champion": "Duke",
+      "championAlive": false,
+      "tiebreaker": 141,
+      "hasSheet": true
+    },
+    {
+      "rank": 11,
+      "name": "Kylie",
+      "avatar": "KY",
+      "totalPoints": 78,
+      "maxPossible": 100,
+      "roundScores": [
+        24,
+        18,
+        20,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        24,
+        9,
+        5,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 27,
+        "West": 15,
+        "South": 12,
+        "Midwest": 24
+      },
+      "champion": "UConn",
+      "championAlive": true,
+      "tiebreaker": 152,
+      "hasSheet": true
+    },
+    {
+      "rank": 12,
+      "name": "Michele Riley",
+      "avatar": "MR",
+      "totalPoints": 77,
+      "maxPossible": 87,
+      "roundScores": [
+        23,
+        18,
+        20,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        23,
+        9,
+        5,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 17,
+        "West": 20,
+        "South": 17,
+        "Midwest": 23
+      },
+      "champion": "Florida",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": true
+    },
+    {
+      "rank": 13,
+      "name": "Danny Cantwell",
+      "avatar": "DC",
+      "totalPoints": 77,
+      "maxPossible": 109,
+      "roundScores": [
+        25,
+        20,
+        16,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        10,
+        4,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 25,
+        "West": 17,
+        "South": 12,
+        "Midwest": 23
+      },
+      "champion": "Michigan",
+      "championAlive": true,
+      "tiebreaker": 80,
+      "hasSheet": true
+    },
+    {
+      "rank": 14,
+      "name": "Norm",
+      "avatar": "NO",
+      "totalPoints": 77,
+      "maxPossible": 99,
+      "roundScores": [
+        23,
+        22,
+        16,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        23,
+        11,
+        4,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 16,
+        "West": 12,
+        "South": 25,
+        "Midwest": 24
+      },
+      "champion": "Illinois",
+      "championAlive": true,
+      "tiebreaker": 132,
+      "hasSheet": true
+    },
+    {
+      "rank": 15,
+      "name": "Wayne Rehmer",
+      "avatar": "WR",
+      "totalPoints": 77,
+      "maxPossible": 99,
+      "roundScores": [
+        25,
+        20,
+        16,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        10,
+        4,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 18,
+        "West": 27,
+        "South": 9,
+        "Midwest": 23
+      },
+      "champion": "Arizona",
+      "championAlive": true,
+      "tiebreaker": 141,
+      "hasSheet": true
+    },
+    {
+      "rank": 16,
+      "name": "Aaira",
+      "avatar": "AA",
+      "totalPoints": 77,
+      "maxPossible": 99,
+      "roundScores": [
+        25,
+        24,
+        12,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        12,
+        3,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 19,
+        "West": 24,
+        "South": 11,
+        "Midwest": 23
+      },
+      "champion": "Michigan",
+      "championAlive": true,
+      "tiebreaker": 146,
+      "hasSheet": true
+    },
+    {
+      "rank": 17,
+      "name": "Kevin Rehmer",
+      "avatar": "KR",
+      "totalPoints": 76,
+      "maxPossible": 98,
+      "roundScores": [
+        26,
+        22,
+        12,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        26,
+        11,
+        3,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 16,
+        "West": 24,
+        "South": 12,
+        "Midwest": 24
+      },
+      "champion": "Michigan",
+      "championAlive": true,
+      "tiebreaker": 116,
+      "hasSheet": true
+    },
+    {
+      "rank": 18,
+      "name": "Brian Thomas",
+      "avatar": "BT",
+      "totalPoints": 76,
+      "maxPossible": 76,
+      "roundScores": [
+        26,
+        22,
+        20,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        26,
+        11,
+        5,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 22,
+        "West": 20,
+        "South": 11,
+        "Midwest": 23
+      },
+      "champion": "Duke",
+      "championAlive": false,
+      "tiebreaker": 127,
+      "hasSheet": true
+    },
+    {
+      "rank": 19,
+      "name": "Michelle Moyer",
+      "avatar": "MM",
+      "totalPoints": 76,
+      "maxPossible": 98,
+      "roundScores": [
+        24,
+        20,
+        16,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        24,
+        10,
+        4,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 20,
+        "West": 22,
+        "South": 10,
+        "Midwest": 24
+      },
+      "champion": "Arizona",
+      "championAlive": true,
+      "tiebreaker": 144,
+      "hasSheet": true
+    },
+    {
+      "rank": 20,
+      "name": "Wyatt",
+      "avatar": "WY",
+      "totalPoints": 74,
+      "maxPossible": 96,
+      "roundScores": [
+        26,
+        20,
+        12,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        26,
+        10,
+        3,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 20,
+        "West": 22,
+        "South": 9,
+        "Midwest": 23
+      },
+      "champion": "Michigan",
+      "championAlive": true,
+      "tiebreaker": 87,
+      "hasSheet": true
+    },
+    {
+      "rank": 21,
+      "name": "Yash",
+      "avatar": "YA",
+      "totalPoints": 74,
+      "maxPossible": 74,
+      "roundScores": [
+        24,
+        22,
+        20,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        24,
+        11,
+        5,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 24,
+        "West": 19,
+        "South": 7,
+        "Midwest": 24
+      },
+      "champion": "Duke",
+      "championAlive": false,
+      "tiebreaker": 127,
+      "hasSheet": true
+    },
+    {
+      "rank": 22,
+      "name": "Andrew",
+      "avatar": "AN",
+      "totalPoints": 74,
+      "maxPossible": 74,
+      "roundScores": [
+        24,
+        22,
+        20,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        24,
+        11,
+        5,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 22,
+        "West": 17,
+        "South": 11,
+        "Midwest": 24
+      },
+      "champion": "Purdue",
+      "championAlive": false,
+      "tiebreaker": 134,
+      "hasSheet": true
+    },
+    {
+      "rank": 23,
+      "name": "Tony L.",
+      "avatar": "TL",
+      "totalPoints": 74,
+      "maxPossible": 96,
+      "roundScores": [
+        26,
+        20,
+        12,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        26,
+        10,
+        3,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 17,
+        "West": 23,
+        "South": 11,
+        "Midwest": 23
+      },
+      "champion": "Michigan",
+      "championAlive": true,
+      "tiebreaker": 155,
+      "hasSheet": true
+    },
+    {
+      "rank": 24,
+      "name": "Rhoda",
+      "avatar": "RH",
+      "totalPoints": 74,
+      "maxPossible": 84,
+      "roundScores": [
+        26,
+        24,
+        16,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        26,
+        12,
+        4,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 18,
+        "West": 28,
+        "South": 12,
+        "Midwest": 16
+      },
+      "champion": "Duke",
+      "championAlive": false,
+      "tiebreaker": 163,
+      "hasSheet": true
+    },
+    {
+      "rank": 25,
+      "name": "Jimena",
+      "avatar": "JI",
+      "totalPoints": 73,
+      "maxPossible": 95,
+      "roundScores": [
+        25,
+        20,
+        12,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        10,
+        3,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 17,
+        "West": 12,
+        "South": 23,
+        "Midwest": 21
+      },
+      "champion": "Michigan",
+      "championAlive": true,
+      "tiebreaker": 123,
+      "hasSheet": true
+    },
+    {
+      "rank": 26,
+      "name": "Margo",
+      "avatar": "MA",
+      "totalPoints": 72,
+      "maxPossible": 94,
+      "roundScores": [
+        26,
+        18,
+        12,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        26,
+        9,
+        3,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 29,
+        "West": 19,
+        "South": 10,
+        "Midwest": 14
+      },
+      "champion": "Arizona",
+      "championAlive": true,
+      "tiebreaker": 0,
+      "hasSheet": true
+    },
+    {
+      "rank": 27,
+      "name": "Heidi",
+      "avatar": "HE",
+      "totalPoints": 71,
+      "maxPossible": 81,
+      "roundScores": [
+        25,
+        22,
+        16,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        11,
+        4,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 30,
+        "West": 17,
+        "South": 11,
+        "Midwest": 13
+      },
+      "champion": "Purdue",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": true
+    },
+    {
+      "rank": 28,
+      "name": "Dom Hoffman",
+      "avatar": "DH",
+      "totalPoints": 71,
+      "maxPossible": 81,
+      "roundScores": [
+        25,
+        18,
+        20,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        9,
+        5,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 20,
+        "West": 13,
+        "South": 14,
+        "Midwest": 24
+      },
+      "champion": "Duke",
+      "championAlive": false,
+      "tiebreaker": 81,
+      "hasSheet": true
+    },
+    {
+      "rank": 29,
+      "name": "Ravtaj Singh",
+      "avatar": "RS",
+      "totalPoints": 71,
+      "maxPossible": 93,
+      "roundScores": [
+        25,
+        14,
+        16,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        7,
+        4,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 20,
+        "West": 23,
+        "South": 7,
+        "Midwest": 21
+      },
+      "champion": "Michigan",
+      "championAlive": true,
+      "tiebreaker": 139,
+      "hasSheet": true
+    },
+    {
+      "rank": 30,
+      "name": "Stephen Moyer",
+      "avatar": "SM",
+      "totalPoints": 71,
+      "maxPossible": 93,
+      "roundScores": [
+        25,
+        22,
+        16,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        11,
+        4,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 14,
+        "West": 28,
+        "South": 11,
+        "Midwest": 18
+      },
+      "champion": "Arizona",
+      "championAlive": true,
+      "tiebreaker": 139,
+      "hasSheet": true
+    },
+    {
+      "rank": 31,
+      "name": "Chuck",
+      "avatar": "CH",
+      "totalPoints": 71,
+      "maxPossible": 81,
+      "roundScores": [
+        25,
+        18,
+        20,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        9,
+        5,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 16,
+        "West": 19,
+        "South": 15,
+        "Midwest": 21
+      },
+      "champion": "Florida",
+      "championAlive": false,
+      "tiebreaker": 145,
+      "hasSheet": true
+    },
+    {
+      "rank": 32,
+      "name": "Michael Lange",
+      "avatar": "ML",
+      "totalPoints": 69,
+      "maxPossible": 69,
+      "roundScores": [
+        23,
+        18,
+        20,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        23,
+        9,
+        5,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 19,
+        "West": 25,
+        "South": 11,
+        "Midwest": 14
+      },
+      "champion": "Duke",
+      "championAlive": false,
+      "tiebreaker": 155,
+      "hasSheet": true
+    },
+    {
+      "rank": 33,
+      "name": "Sally Curran",
+      "avatar": "SC",
+      "totalPoints": 69,
+      "maxPossible": 69,
+      "roundScores": [
+        23,
+        22,
+        16,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        23,
+        11,
+        4,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 18,
+        "West": 15,
+        "South": 7,
+        "Midwest": 29
+      },
+      "champion": "Duke",
+      "championAlive": false,
+      "tiebreaker": 159,
+      "hasSheet": true
+    },
+    {
+      "rank": 34,
+      "name": "Laurie L.",
+      "avatar": "LL",
+      "totalPoints": 68,
+      "maxPossible": 90,
+      "roundScores": [
+        22,
+        18,
+        12,
+        16,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        22,
+        9,
+        3,
+        2,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 16,
+        "West": 20,
+        "South": 11,
+        "Midwest": 21
+      },
+      "champion": "Michigan",
+      "championAlive": true,
+      "tiebreaker": 145,
+      "hasSheet": true
+    },
+    {
+      "rank": 35,
+      "name": "Wayne Lange",
+      "avatar": "WL",
+      "totalPoints": 68,
+      "maxPossible": 68,
+      "roundScores": [
+        22,
+        18,
+        20,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        22,
+        9,
+        5,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 16,
+        "West": 16,
+        "South": 14,
+        "Midwest": 22
+      },
+      "champion": "Duke",
+      "championAlive": false,
+      "tiebreaker": 155,
+      "hasSheet": true
+    },
+    {
+      "rank": 36,
+      "name": "Jeremy Maxfield",
+      "avatar": "JM",
+      "totalPoints": 67,
+      "maxPossible": 89,
+      "roundScores": [
+        23,
+        20,
+        16,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        23,
+        10,
+        4,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 16,
+        "West": 27,
+        "South": 10,
+        "Midwest": 14
+      },
+      "champion": "Arizona",
+      "championAlive": true,
+      "tiebreaker": 141,
+      "hasSheet": true
+    },
+    {
+      "rank": 37,
+      "name": "Tyler",
+      "avatar": "TY",
+      "totalPoints": 67,
+      "maxPossible": 89,
+      "roundScores": [
+        21,
+        22,
+        16,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        21,
+        11,
+        4,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 16,
+        "West": 16,
+        "South": 13,
+        "Midwest": 22
+      },
+      "champion": "Michigan",
+      "championAlive": true,
+      "tiebreaker": 141,
+      "hasSheet": true
+    },
+    {
+      "rank": 38,
+      "name": "Owen Curran",
+      "avatar": "OC",
+      "totalPoints": 66,
+      "maxPossible": 66,
+      "roundScores": [
+        24,
+        18,
+        16,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        24,
+        9,
+        4,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 18,
+        "West": 12,
+        "South": 20,
+        "Midwest": 16
+      },
+      "champion": "Duke",
+      "championAlive": false,
+      "tiebreaker": 152,
+      "hasSheet": true
+    },
+    {
+      "rank": 39,
+      "name": "Dawson",
+      "avatar": "DA",
+      "totalPoints": 62,
+      "maxPossible": 84,
+      "roundScores": [
+        24,
+        22,
+        8,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        24,
+        11,
+        2,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 16,
+        "West": 23,
+        "South": 10,
+        "Midwest": 13
+      },
+      "champion": "Arizona",
+      "championAlive": true,
+      "tiebreaker": 82,
+      "hasSheet": true
+    },
+    {
+      "rank": 40,
+      "name": "Aappa",
+      "avatar": "AA",
+      "totalPoints": 62,
+      "maxPossible": 84,
+      "roundScores": [
+        22,
+        20,
+        12,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        22,
+        10,
+        3,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 27,
+        "West": 11,
+        "South": 10,
+        "Midwest": 14
+      },
+      "champion": "UConn",
+      "championAlive": true,
+      "tiebreaker": 121,
+      "hasSheet": true
+    },
+    {
+      "rank": 41,
+      "name": "Chance",
+      "avatar": "CH",
+      "totalPoints": 61,
+      "maxPossible": 83,
+      "roundScores": [
+        21,
+        20,
+        12,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        21,
+        10,
+        3,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 16,
+        "West": 20,
+        "South": 11,
+        "Midwest": 14
+      },
+      "champion": "Arizona",
+      "championAlive": true,
+      "tiebreaker": 0,
+      "hasSheet": true
+    },
+    {
+      "rank": 42,
+      "name": "Liam Curran",
+      "avatar": "LC",
+      "totalPoints": 58,
+      "maxPossible": 58,
+      "roundScores": [
+        22,
+        20,
+        8,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        22,
+        10,
+        2,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 25,
+        "West": 12,
+        "South": 10,
+        "Midwest": 11
+      },
+      "champion": "Iowa State",
+      "championAlive": false,
+      "tiebreaker": 134,
+      "hasSheet": true
+    },
+    {
+      "rank": 43,
+      "name": "Marisa",
+      "avatar": "MA",
+      "totalPoints": 51,
+      "maxPossible": 51,
+      "roundScores": [
+        23,
+        16,
+        12,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        23,
+        8,
+        3,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 23,
+        "West": 9,
+        "South": 7,
+        "Midwest": 12
+      },
+      "champion": "Duke",
+      "championAlive": false,
+      "tiebreaker": 100,
+      "hasSheet": true
+    },
+    {
+      "rank": 44,
+      "name": "Neel",
+      "avatar": "NE",
+      "totalPoints": 51,
+      "maxPossible": 51,
+      "roundScores": [
+        21,
+        10,
+        12,
+        8,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        21,
+        5,
+        3,
+        1,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 13,
+        "West": 18,
+        "South": 5,
+        "Midwest": 15
+      },
+      "champion": "Virginia",
+      "championAlive": false,
+      "tiebreaker": 167,
+      "hasSheet": true
+    },
+    {
+      "rank": 45,
+      "name": "Tej Shah",
+      "avatar": "TS",
+      "totalPoints": 50,
+      "maxPossible": 50,
+      "roundScores": [
+        28,
+        22,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        28,
+        11,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 46,
+      "name": "Emelio Prieto",
+      "avatar": "EP",
+      "totalPoints": 49,
+      "maxPossible": 49,
+      "roundScores": [
+        25,
+        24,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        12,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 47,
+      "name": "Paul Gurgos",
+      "avatar": "PG",
+      "totalPoints": 48,
+      "maxPossible": 48,
+      "roundScores": [
+        24,
+        24,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        24,
+        12,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 48,
+      "name": "Kristin Lange",
+      "avatar": "KL",
+      "totalPoints": 48,
+      "maxPossible": 48,
+      "roundScores": [
+        24,
+        24,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        24,
+        12,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 49,
+      "name": "Cam Humphreys",
+      "avatar": "CH",
+      "totalPoints": 47,
+      "maxPossible": 47,
+      "roundScores": [
+        25,
+        22,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        11,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 50,
+      "name": "Surje P",
+      "avatar": "SP",
+      "totalPoints": 46,
+      "maxPossible": 46,
+      "roundScores": [
+        26,
+        20,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        26,
+        10,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 51,
+      "name": "Garv Patel",
+      "avatar": "GP",
+      "totalPoints": 45,
+      "maxPossible": 45,
+      "roundScores": [
+        23,
+        22,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        23,
+        11,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 52,
+      "name": "John Skwirblies",
+      "avatar": "JS",
+      "totalPoints": 45,
+      "maxPossible": 45,
+      "roundScores": [
+        25,
+        20,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        10,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 53,
+      "name": "Rob",
+      "avatar": "RO",
+      "totalPoints": 45,
+      "maxPossible": 45,
+      "roundScores": [
+        27,
+        18,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        27,
+        9,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 54,
+      "name": "Ben",
+      "avatar": "BE",
+      "totalPoints": 45,
+      "maxPossible": 45,
+      "roundScores": [
+        23,
+        22,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        23,
+        11,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 55,
+      "name": "Jeff Platt",
+      "avatar": "JP",
+      "totalPoints": 45,
+      "maxPossible": 45,
+      "roundScores": [
+        25,
+        20,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        10,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 56,
+      "name": "Bob",
+      "avatar": "BO",
+      "totalPoints": 42,
+      "maxPossible": 42,
+      "roundScores": [
+        26,
+        16,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        26,
+        8,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 57,
+      "name": "Spencer",
+      "avatar": "SP",
+      "totalPoints": 41,
+      "maxPossible": 41,
+      "roundScores": [
+        23,
+        18,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        23,
+        9,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 58,
+      "name": "Ken Burckardt",
+      "avatar": "KB",
+      "totalPoints": 41,
+      "maxPossible": 41,
+      "roundScores": [
+        21,
+        20,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        21,
+        10,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 59,
+      "name": "Kennedy Burckardt",
+      "avatar": "KB",
+      "totalPoints": 41,
+      "maxPossible": 41,
+      "roundScores": [
+        23,
+        18,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        23,
+        9,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 60,
+      "name": "Julian",
+      "avatar": "JU",
+      "totalPoints": 39,
+      "maxPossible": 39,
+      "roundScores": [
+        23,
+        16,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        23,
+        8,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 61,
+      "name": "Nate",
+      "avatar": "NA",
+      "totalPoints": 39,
+      "maxPossible": 39,
+      "roundScores": [
+        21,
+        18,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        21,
+        9,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 62,
+      "name": "Lizzie",
+      "avatar": "LI",
+      "totalPoints": 39,
+      "maxPossible": 39,
+      "roundScores": [
+        25,
+        14,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        25,
+        7,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    },
+    {
+      "rank": 63,
+      "name": "Caroline Burckardt",
+      "avatar": "CB",
+      "totalPoints": 35,
+      "maxPossible": 35,
+      "roundScores": [
+        21,
+        14,
+        0,
+        0,
+        0,
+        0
+      ],
+      "roundCorrect": [
+        21,
+        7,
+        0,
+        0,
+        0,
+        0
+      ],
+      "regionScores": {
+        "East": 0,
+        "West": 0,
+        "South": 0,
+        "Midwest": 0
+      },
+      "champion": "Unknown",
+      "championAlive": false,
+      "tiebreaker": 0,
+      "hasSheet": false
+    }
+  ]
+}

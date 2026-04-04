@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 Rehmer-Bauman NCAA Tournament</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Animated background particles -->
+  <div class="bg-particles" id="bgParticles"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-area">
+        <div class="logo-icon">🏀</div>
+        <div class="logo-text">
+          <h1>Rehmer-Bauman 2026</h1>
+          <p class="subtitle">NCAA Tournament Bracket Leaderboard</p>
+        </div>
+      </div>
+      <div class="tournament-status" id="tournamentStatus">
+        <span class="status-badge live">
+          <span class="pulse-dot"></span>
+          <span id="statusText">Loading...</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats Bar -->
+  <section class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-card">
+        <div class="stat-number" id="statPlayers">--</div>
+        <div class="stat-label">Players</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statGamesPlayed">--</div>
+        <div class="stat-label">Games Played</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statAvgScore">--</div>
+        <div class="stat-label">Avg Score</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statTopScore">--</div>
+        <div class="stat-label">Top Score</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statMaxPossible">--</div>
+        <div class="stat-label">Max Possible</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Controls -->
+  <section class="controls-bar">
+    <div class="controls-inner">
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search players..." autocomplete="off">
+      </div>
+      <div class="filter-group">
+        <button class="filter-btn active" data-filter="all">All Players</button>
+        <button class="filter-btn" data-filter="alive">🏆 Champ Alive</button>
+        <button class="filter-btn" data-filter="eliminated">💀 Eliminated</button>
+      </div>
+      <div class="sort-group">
+        <label>Sort by:</label>
+        <select id="sortSelect">
+          <option value="rank">Rank</option>
+          <option value="name">Name</option>
+          <option value="maxPossible">Max Possible</option>
+          <option value="champion">Champion Pick</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Podium (Top 3) -->
+  <section class="podium-section" id="podiumSection">
+    <h2 class="section-title">🏆 Current Leaders</h2>
+    <div class="podium">
+      <div class="podium-spot second" id="podium2">
+        <div class="podium-crown">🥈</div>
+        <div class="podium-avatar"></div>
+        <div class="podium-name"></div>
+        <div class="podium-score"></div>
+        <div class="podium-champion"></div>
+        <div class="podium-base">2</div>
+      </div>
+      <div class="podium-spot first" id="podium1">
+        <div class="podium-crown">👑</div>
+        <div class="podium-avatar"></div>
+        <div class="podium-name"></div>
+        <div class="podium-score"></div>
+        <div class="podium-champion"></div>
+        <div class="podium-base">1</div>
+      </div>
+      <div class="podium-spot third" id="podium3">
+        <div class="podium-crown">🥉</div>
+        <div class="podium-avatar"></div>
+        <div class="podium-name"></div>
+        <div class="podium-score"></div>
+        <div class="podium-champion"></div>
+        <div class="podium-base">3</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Four Banner -->
+  <section class="finalfour-section" id="finalFourSection">
+    <h2 class="section-title">🏟️ Final Four — Tonight in Indianapolis</h2>
+    <div class="ff-matchups" id="ffMatchups"></div>
+  </section>
+
+  <!-- Prize Pool -->
+  <section class="prizes-section" id="prizesSection">
+    <h2 class="section-title">💰 Prize Pool — $630</h2>
+    <div class="prizes-grid" id="prizesGrid"></div>
+  </section>
+
+  <!-- Round Scoring Breakdown -->
+  <section class="rounds-section">
+    <h2 class="section-title">📊 Round Breakdown</h2>
+    <div class="rounds-bar" id="roundsBar"></div>
+  </section>
+
+  <!-- Leaderboard Table -->
+  <section class="leaderboard-section">
+    <h2 class="section-title">📋 Full Leaderboard <span class="player-count" id="playerCount"></span></h2>
+    <div class="table-wrapper">
+      <table class="leaderboard-table" id="leaderboardTable">
+        <thead>
+          <tr>
+            <th class="col-rank">#</th>
+            <th class="col-player">Player</th>
+            <th class="col-total">Total</th>
+            <th class="col-round">R64</th>
+            <th class="col-round">R32</th>
+            <th class="col-round">S16</th>
+            <th class="col-round">E8</th>
+            <th class="col-round">F4</th>
+            <th class="col-round">NCG</th>
+            <th class="col-champion">Champion</th>
+            <th class="col-max">Max Possible</th>
+            <th class="col-bar">Score Progress</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody">
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Player Detail Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="playerModal">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div class="modal-header">
+        <div class="modal-avatar" id="modalAvatar"></div>
+        <div class="modal-info">
+          <h2 id="modalName"></h2>
+          <p id="modalRank"></p>
+        </div>
+        <div class="modal-score-big" id="modalScore"></div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-stats-grid" id="modalStats"></div>
+        <div class="modal-round-chart" id="modalRoundChart"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>🏀 Rehmer-Bauman 2026 NCAA Tournament &middot; 63 Players &middot; $630 Prize Pool &middot; $10 Buy-In</p>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
