@@ -121,6 +121,9 @@ ACTUALS_BY_POS[(32, 10)] = "Tennessee"
 ACTUALS_BY_POS[(24, 9)] = "Michigan"
 
 FINAL_FOUR_TEAMS = ["UConn", "Arizona", "Illinois", "Michigan"]
+FINALISTS = ["UConn", "Michigan"]
+ACTUALS_BY_POS[(5, 6)] = "UConn"
+ACTUALS_BY_POS[(5, 8)] = "Michigan"
 
 # ===========================================================
 # TEAM NAME NORMALIZATION
@@ -411,12 +414,23 @@ def score_picks(picks):
     champion = clean_team_name(champion)
     f4_picks = [clean_team_name(p) for p in f4_picks]
 
+    for idx, (row, col, rd) in enumerate(F4_POSITIONS):
+        actual = ACTUALS_BY_POS.get((row, col))
+        if actual is None:
+            continue
+        if idx < len(f4_picks) and names_match(f4_picks[idx], actual):
+            round_correct[rd] += 1
+
+    ncg_actual = ACTUALS_BY_POS.get((NCG_POSITION[0], NCG_POSITION[1]))
+    if ncg_actual and champion and names_match(champion, ncg_actual):
+        round_correct["NCG"] += 1
+
     round_scores = {rd: round_correct[rd] * ROUND_POINTS[rd] for rd in round_correct}
     total = sum(round_scores.values())
 
-    champ_alive = bool(champion and normalize(champion) in [normalize(t) for t in FINAL_FOUR_TEAMS])
-    f4_alive = [p for p in f4_picks if p and normalize(p) in [normalize(t) for t in FINAL_FOUR_TEAMS]]
-    max_future = len(f4_alive) * ROUND_POINTS["F4"] + (ROUND_POINTS["NCG"] if champ_alive else 0)
+    champ_alive = bool(champion and normalize(champion) in [normalize(t) for t in FINALISTS])
+    f4_alive = [p for p in f4_picks if p and normalize(p) in [normalize(t) for t in FINALISTS]]
+    max_future = 0 if ncg_actual else (ROUND_POINTS["NCG"] if champ_alive else 0)
     max_possible = total + max_future
 
     return {
@@ -651,11 +665,11 @@ def main():
         "tournament": {
             "name": "2026 Rehmer-Bauman NCAA Tournament",
             "year": 2026,
-            "lastUpdated": "2026-04-04T12:00:00Z",
+            "lastUpdated": "2026-04-05T18:00:00Z",
             "totalGames": 63,
             "gamesPlayed": games_played,
-            "roundsCompleted": 4,
-            "status": "Final Four Tonight!"
+            "roundsCompleted": 5,
+            "status": "Championship matchup is set"
         },
         "scoring": {
             "round1": 1, "round2": 2, "round3": 4, "round4": 8,
@@ -667,14 +681,15 @@ def main():
             {"id": 2, "name": "Round of 32", "shortName": "R32", "games": 16, "pointsPer": 2, "completed": True},
             {"id": 3, "name": "Sweet 16", "shortName": "S16", "games": 8, "pointsPer": 4, "completed": True},
             {"id": 4, "name": "Elite 8", "shortName": "E8", "games": 4, "pointsPer": 8, "completed": True},
-            {"id": 5, "name": "Final Four", "shortName": "F4", "games": 2, "pointsPer": 10, "completed": False},
+            {"id": 5, "name": "Final Four", "shortName": "F4", "games": 2, "pointsPer": 10, "completed": True},
             {"id": 6, "name": "Championship", "shortName": "NCG", "games": 1, "pointsPer": 12, "completed": False},
         ],
         "finalFour": {
             "teams": FINAL_FOUR_TEAMS,
-            "semifinal1": {"team1": "UConn (East, #2)", "team2": "Illinois (South, #3)", "time": "6:09 PM ET"},
-            "semifinal2": {"team1": "Arizona (West, #1)", "team2": "Michigan (Midwest, #1)", "time": "8:49 PM ET"},
-            "championship": {"date": "April 7, 2026", "time": "9:20 PM ET"},
+            "title": "Championship Set",
+            "semifinal1": {"team1": "UConn (East, #2)", "team2": "Illinois (South, #3)", "score1": 71, "score2": 62, "time": "Final"},
+            "semifinal2": {"team1": "Michigan (Midwest, #1)", "team2": "Arizona (West, #1)", "score1": 91, "score2": 73, "time": "Final"},
+            "championship": {"date": "April 6, 2026", "time": "8:50 PM ET", "team1": "UConn", "team2": "Michigan"},
             "venue": "Lucas Oil Stadium, Indianapolis",
         },
         "prizes": prizes,

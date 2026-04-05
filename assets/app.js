@@ -160,38 +160,48 @@
     const ff = data.finalFour;
     if (!ff) return;
     const container = document.getElementById('ffMatchups');
+    const title = document.getElementById('finalFourTitle');
     if (!container) return;
+    if (title && ff.title) {
+      title.textContent = '🏟️ ' + ff.title;
+    }
+
+    function parseBracketTeam(raw, fallbackSeed) {
+      if (!raw) return { seed: fallbackSeed || '', name: 'TBD' };
+      const match = String(raw).match(/^(.+?)\s*\(([^)]+)\)$/);
+      if (!match) return { seed: fallbackSeed || '', name: String(raw) };
+      return {
+        name: match[1].trim(),
+        seed: match[2].replace(', #', '').replace('#', ''),
+      };
+    }
+
+    function renderGame(game, fallbackLeftSeed, fallbackRightSeed) {
+      const team1 = parseBracketTeam(game.team1, fallbackLeftSeed);
+      const team2 = parseBracketTeam(game.team2, fallbackRightSeed);
+      const center = game.score1 != null && game.score2 != null
+        ? '<div class="ff-vs">Final</div><div class="ff-time">' + escapeHtml(String(game.score1)) + ' - ' + escapeHtml(String(game.score2)) + '</div>'
+        : '<div class="ff-vs">VS</div><div class="ff-time">' + escapeHtml(game.time || '') + '</div>';
+
+      return '<div class="ff-game">' +
+        '<div class="ff-team">' +
+          '<span class="ff-seed">' + escapeHtml(team1.seed) + '</span>' +
+          '<span class="ff-name">' + escapeHtml(team1.name) + '</span>' +
+        '</div>' +
+        '<div style="text-align:center">' + center + '</div>' +
+        '<div class="ff-team right">' +
+          '<span class="ff-seed">' + escapeHtml(team2.seed) + '</span>' +
+          '<span class="ff-name">' + escapeHtml(team2.name) + '</span>' +
+        '</div>' +
+      '</div>';
+    }
+
     container.innerHTML =
-      '<div class="ff-game">' +
-        '<div class="ff-team">' +
-          '<span class="ff-seed">E2</span>' +
-          '<span class="ff-name">UConn</span>' +
-        '</div>' +
-        '<div style="text-align:center">' +
-          '<div class="ff-vs">VS</div>' +
-          '<div class="ff-time">' + escapeHtml(ff.semifinal1.time) + '</div>' +
-        '</div>' +
-        '<div class="ff-team right">' +
-          '<span class="ff-seed">S3</span>' +
-          '<span class="ff-name">Illinois</span>' +
-        '</div>' +
-      '</div>' +
-      '<div class="ff-game">' +
-        '<div class="ff-team">' +
-          '<span class="ff-seed">W1</span>' +
-          '<span class="ff-name">Arizona</span>' +
-        '</div>' +
-        '<div style="text-align:center">' +
-          '<div class="ff-vs">VS</div>' +
-          '<div class="ff-time">' + escapeHtml(ff.semifinal2.time) + '</div>' +
-        '</div>' +
-        '<div class="ff-team right">' +
-          '<span class="ff-seed">MW1</span>' +
-          '<span class="ff-name">Michigan</span>' +
-        '</div>' +
-      '</div>' +
+      renderGame(ff.semifinal1, 'E2', 'S3') +
+      renderGame(ff.semifinal2, 'MW1', 'W1') +
       '<div class="ff-label">Championship: ' + escapeHtml(ff.championship.date) +
         ' &middot; ' + escapeHtml(ff.championship.time) +
+        ' &middot; ' + escapeHtml(ff.championship.team1 + ' vs ' + ff.championship.team2) +
         ' &middot; ' + escapeHtml(ff.venue) + '</div>';
   }
 
