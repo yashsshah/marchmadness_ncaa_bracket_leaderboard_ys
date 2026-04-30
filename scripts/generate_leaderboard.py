@@ -8,6 +8,8 @@ import openpyxl
 import re
 
 MASTER_FILE = "files/2026_Bauman-Rehmer_NCAA.xlsx"
+LEADERBOARD_FILE = "data/leaderboard.json"
+COMPARISON_FILE = "data/bracket_comparisons.json"
 
 # ===========================================================
 # SCORING RULES (from NCAA_2026_Rules.doc)
@@ -22,6 +24,8 @@ MASTER_FILE = "files/2026_Bauman-Rehmer_NCAA.xlsx"
 
 ROUND_POINTS = {"R64": 1, "R32": 2, "S16": 4, "E8": 8, "F4": 10, "NCG": 12}
 MAX_SCORE = 160
+REGIONS = ["East", "West", "South", "Midwest"]
+COMPLETED_ROUNDS = ["R64", "R32", "S16", "E8"]
 
 # ===========================================================
 # ACTUAL RESULTS by bracket cell position
@@ -342,6 +346,13 @@ DISPLAY_NAMES = {
     "northcarolina": "North Carolina", "ohiostate": "Ohio State",
     "southflorida": "South Florida", "northerniowa": "Northern Iowa",
     "saintmarys": "Saint Mary's", "santaclara": "Santa Clara",
+    "ucf": "UCF", "siena": "Siena", "furman": "Furman",
+    "californiabaptist": "California Baptist", "northdakotastate": "North Dakota State",
+    "hawaii": "Hawaii", "queens": "Queens", "prairieview": "Prairie View A&M",
+    "mcneese": "McNeese", "hofstra": "Hofstra", "akron": "Akron",
+    "wrightstate": "Wright State", "tennesseestate": "Tennessee State",
+    "longisland": "Long Island", "miamiohio": "Miami (OH)", "howard": "Howard",
+    "penn": "Penn", "troy": "Troy",
 }
 
 
@@ -451,6 +462,115 @@ def score_picks(picks):
     }
 
 
+def build_pick_entry(raw_team, round_key, actual_team=None, status_override=None, points_override=None):
+    team = clean_team_name(raw_team)
+    if status_override is not None:
+        status = status_override
+        points_awarded = points_override if points_override is not None else 0
+    elif actual_team is None:
+        status = "pending" if team else "empty"
+        points_awarded = 0
+    elif team:
+        is_correct = names_match(team, actual_team)
+        status = "correct" if is_correct else "incorrect"
+        points_awarded = ROUND_POINTS[round_key] if is_correct else 0
+    else:
+        status = "empty"
+        points_awarded = 0
+
+    return {
+        "team": team,
+        "round": round_key,
+        "status": status,
+        "pointsAwarded": points_awarded,
+        "actualTeam": clean_team_name(actual_team) if actual_team else "",
+    }
+
+
+def build_region_comparison(region, picks=None, actual_mode=False):
+    region_data = {}
+    for round_key in COMPLETED_ROUNDS:
+        positions = [pos for pos in get_pick_positions(region) if pos[2] == round_key]
+        entries = []
+        for idx, (row, col, _) in enumerate(positions):
+            actual_team = ACTUALS_BY_POS.get((row, col))
+            if actual_mode:
+                entries.append(build_pick_entry(actual_team, round_key, status_override="correct", points_override=ROUND_POINTS[round_key]))
+                continue
+
+            round_picks = picks.get(region, {}).get(round_key, []) if picks else []
+            raw_pick = round_picks[idx] if idx < len(round_picks) else ""
+            entries.append(build_pick_entry(raw_pick, round_key, actual_team=actual_team))
+
+        region_data[round_key] = entries
+    return region_data
+
+
+def build_future_groups(picks=None, actual_mode=False):
+    if actual_mode:
+        return [
+            {
+                "title": "Championship Matchup",
+                "entries": [build_pick_entry(team, "F4", status_override="correct", points_override=ROUND_POINTS["F4"]) for team in FINALISTS],
+            },
+            {
+                "title": "Champion",
+                "entries": [build_pick_entry("TBD", "NCG", status_override="pending", points_override=0)],
+            },
+        ]
+
+    f4_picks = picks.get("F4", []) if picks else []
+    champion_pick = picks.get("NCG", "") if picks else ""
+    finalist_actuals = [ACTUALS_BY_POS.get((row, col)) for row, col, _ in F4_POSITIONS]
+    champion_actual = ACTUALS_BY_POS.get((NCG_POSITION[0], NCG_POSITION[1]))
+    return [
+        {
+            "title": "Final Four Picks",
+            "entries": [
+                build_pick_entry(
+                    pick,
+                    "F4",
+                    actual_team=finalist_actuals[idx] if idx < len(finalist_actuals) else None,
+                )
+                for idx, pick in enumerate(f4_picks)
+            ],
+        },
+        {
+            "title": "Champion Pick",
+            "entries": [build_pick_entry(champion_pick, "NCG", actual_team=champion_actual)],
+        },
+    ]
+
+
+def build_comparison_payload(name, picks=None, available=True, message=""):
+    if not available:
+        return {
+            "name": name,
+            "available": False,
+            "message": message,
+            "regions": {},
+            "futureGroups": [],
+        }
+
+    return {
+        "name": name,
+        "available": True,
+        "message": message,
+        "regions": {region: build_region_comparison(region, picks=picks, actual_mode=False) for region in REGIONS},
+        "futureGroups": build_future_groups(picks=picks, actual_mode=False),
+    }
+
+
+def build_actual_comparison_payload():
+    return {
+        "name": "Actual Results",
+        "available": True,
+        "message": "",
+        "regions": {region: build_region_comparison(region, actual_mode=True) for region in REGIONS},
+        "futureGroups": build_future_groups(actual_mode=True),
+    }
+
+
 # ===========================================================
 # SHEET NAME -> PARTICIPANT NAME MAPPING
 # ===========================================================
@@ -529,6 +649,7 @@ def main():
     wb = openpyxl.load_workbook(MASTER_FILE, data_only=True)
 
     participants = []
+    comparison_entries = {}
     mismatches = []
 
     # 1. Score participants with individual sheets
@@ -546,6 +667,7 @@ def main():
         result = score_picks(picks)
         result["name"] = participant_name
         result["hasSheet"] = True
+        comparison_entries[participant_name] = build_comparison_payload(participant_name, picks=picks, available=True)
 
         # Verify R1/R2 against organizer's Scores sheet
         org = SCORES_SHEET_DATA.get(participant_name)
@@ -587,6 +709,11 @@ def main():
             "f4Picks": ["", ""],
             "f4Alive": [],
         }
+        comparison_entries[name] = build_comparison_payload(
+            name,
+            available=False,
+            message="No bracket sheet was available for this participant. Only Round of 64 and Round of 32 totals were entered in the master workbook.",
+        )
         participants.append(result)
 
     # Sort: total pts desc, tiebreaker asc
@@ -696,6 +823,18 @@ def main():
         "participants": [],
     }
 
+    comparison_data = {
+        "regionOrder": REGIONS,
+        "roundOrder": [
+            {"key": "R64", "label": "R64", "points": ROUND_POINTS["R64"]},
+            {"key": "R32", "label": "R32", "points": ROUND_POINTS["R32"]},
+            {"key": "S16", "label": "S16", "points": ROUND_POINTS["S16"]},
+            {"key": "E8", "label": "E8", "points": ROUND_POINTS["E8"]},
+        ],
+        "actual": build_actual_comparison_payload(),
+        "participants": [],
+    }
+
     for p in participants:
         parts = p["name"].split()
         avatar = (parts[0][0] + parts[-1][0]).upper() if len(parts) >= 2 else p["name"][:2].upper()
@@ -714,8 +853,23 @@ def main():
             "hasSheet": p.get("hasSheet", True),
         })
 
-    with open("data/leaderboard.json", "w") as f:
+        comparison_entry = comparison_entries.get(p["name"], build_comparison_payload(p["name"], available=False, message="Bracket comparison unavailable."))
+        comparison_data["participants"].append({
+            "name": p["name"],
+            "rank": p["rank"],
+            "totalPoints": p["totalPoints"],
+            "hasSheet": p.get("hasSheet", True),
+            "available": comparison_entry["available"],
+            "message": comparison_entry["message"],
+            "regions": comparison_entry["regions"],
+            "futureGroups": comparison_entry["futureGroups"],
+        })
+
+    with open(LEADERBOARD_FILE, "w") as f:
         json.dump(leaderboard, f, indent=2)
+
+    with open(COMPARISON_FILE, "w") as f:
+        json.dump(comparison_data, f, indent=2)
 
     # ===========================================================
     # SUMMARY
