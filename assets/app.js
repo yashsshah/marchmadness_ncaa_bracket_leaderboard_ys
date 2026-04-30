@@ -9,10 +9,14 @@
 
   // ---- State ----
   let data = null;
+  let comparisonData = null;
   let filteredParticipants = [];
   let currentFilter = 'all';
   let currentSort = 'rank';
   let searchQuery = '';
+  let activeView = 'leaderboard';
+  let compareSearchQuery = '';
+  let selectedComparisonName = '';
 
   // ---- Color palette for avatars ----
   const AVATAR_COLORS = [
@@ -49,14 +53,18 @@
 
   // ---- Load Data ----
   function loadData() {
-    fetch('data/leaderboard.json')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to load leaderboard data');
-        return res.json();
-      })
-      .then(json => {
-        data = json;
+    Promise.all([
+      fetchJson('data/leaderboard.json'),
+      fetchJson('data/bracket_comparisons.json')
+    ])
+      .then(([leaderboardJson, comparisonJson]) => {
+        data = leaderboardJson;
+        comparisonData = comparisonJson;
         filteredParticipants = [...data.participants];
+        if (!selectedComparisonName) {
+          const defaultParticipant = comparisonData.participants.find(p => p.name === 'Yash') || comparisonData.participants[0];
+          selectedComparisonName = defaultParticipant ? defaultParticipant.name : '';
+        }
         render();
       })
       .catch(err => {
@@ -66,16 +74,38 @@
       });
   }
 
+  function fetchJson(path) {
+    return fetch(path).then(res => {
+      if (!res.ok) throw new Error('Failed to load ' + path);
+      return res.json();
+    });
+  }
+
   // ---- Render Everything ----
   function render() {
+    renderViewTabs();
     renderStatus();
     renderStats();
     renderFinalFour();
     renderPrizes();
     renderPodium();
     renderRounds();
+    renderComparisonView();
     applyFilters();
+    syncViewState();
     bindEvents();
+  }
+
+  function renderViewTabs() {
+    document.querySelectorAll('.view-tab').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.view === activeView);
+    });
+  }
+
+  function syncViewState() {
+    document.querySelectorAll('section[data-view]').forEach(section => {
+      section.classList.toggle('is-hidden', section.dataset.view !== activeView);
+    });
   }
 
   // ---- Tournament Status ----
@@ -160,38 +190,48 @@
     const ff = data.finalFour;
     if (!ff) return;
     const container = document.getElementById('ffMatchups');
+    const title = document.getElementById('finalFourTitle');
     if (!container) return;
+    if (title && ff.title) {
+      title.textContent = '🏟️ ' + ff.title;
+    }
+
+    function parseBracketTeam(raw, fallbackSeed) {
+      if (!raw) return { seed: fallbackSeed || '', name: 'TBD' };
+      const match = String(raw).match(/^(.+?)\s*\(([^)]+)\)$/);
+      if (!match) return { seed: fallbackSeed || '', name: String(raw) };
+      return {
+        name: match[1].trim(),
+        seed: match[2].replace(', #', '').replace('#', ''),
+      };
+    }
+
+    function renderGame(game, fallbackLeftSeed, fallbackRightSeed) {
+      const team1 = parseBracketTeam(game.team1, fallbackLeftSeed);
+      const team2 = parseBracketTeam(game.team2, fallbackRightSeed);
+      const center = game.score1 != null && game.score2 != null
+        ? '<div class="ff-vs">Final</div><div class="ff-time">' + escapeHtml(String(game.score1)) + ' - ' + escapeHtml(String(game.score2)) + '</div>'
+        : '<div class="ff-vs">VS</div><div class="ff-time">' + escapeHtml(game.time || '') + '</div>';
+
+      return '<div class="ff-game">' +
+        '<div class="ff-team">' +
+          '<span class="ff-seed">' + escapeHtml(team1.seed) + '</span>' +
+          '<span class="ff-name">' + escapeHtml(team1.name) + '</span>' +
+        '</div>' +
+        '<div style="text-align:center">' + center + '</div>' +
+        '<div class="ff-team right">' +
+          '<span class="ff-seed">' + escapeHtml(team2.seed) + '</span>' +
+          '<span class="ff-name">' + escapeHtml(team2.name) + '</span>' +
+        '</div>' +
+      '</div>';
+    }
+
     container.innerHTML =
-      '<div class="ff-game">' +
-        '<div class="ff-team">' +
-          '<span class="ff-seed">E2</span>' +
-          '<span class="ff-name">UConn</span>' +
-        '</div>' +
-        '<div style="text-align:center">' +
-          '<div class="ff-vs">VS</div>' +
-          '<div class="ff-time">' + escapeHtml(ff.semifinal1.time) + '</div>' +
-        '</div>' +
-        '<div class="ff-team right">' +
-          '<span class="ff-seed">S3</span>' +
-          '<span class="ff-name">Illinois</span>' +
-        '</div>' +
-      '</div>' +
-      '<div class="ff-game">' +
-        '<div class="ff-team">' +
-          '<span class="ff-seed">W1</span>' +
-          '<span class="ff-name">Arizona</span>' +
-        '</div>' +
-        '<div style="text-align:center">' +
-          '<div class="ff-vs">VS</div>' +
-          '<div class="ff-time">' + escapeHtml(ff.semifinal2.time) + '</div>' +
-        '</div>' +
-        '<div class="ff-team right">' +
-          '<span class="ff-seed">MW1</span>' +
-          '<span class="ff-name">Michigan</span>' +
-        '</div>' +
-      '</div>' +
+      renderGame(ff.semifinal1, 'E2', 'S3') +
+      renderGame(ff.semifinal2, 'MW1', 'W1') +
       '<div class="ff-label">Championship: ' + escapeHtml(ff.championship.date) +
         ' &middot; ' + escapeHtml(ff.championship.time) +
+        ' &middot; ' + escapeHtml(ff.championship.team1 + ' vs ' + ff.championship.team2) +
         ' &middot; ' + escapeHtml(ff.venue) + '</div>';
   }
 
@@ -267,6 +307,202 @@
       `;
       container.appendChild(card);
     });
+  }
+
+  function renderComparisonView() {
+    if (!comparisonData) return;
+    renderComparisonPicker();
+    renderBracketBoard(document.getElementById('actualBracketPanel'), comparisonData.actual, true);
+    renderComparisonSummary(document.getElementById('actualBracketSummary'), comparisonData.actual, true);
+
+    const selected = getSelectedComparisonParticipant();
+    document.getElementById('selectedBracketTitle').textContent = selected ? selected.name : 'Participant Bracket';
+    document.getElementById('selectedBracketMeta').textContent = selected
+      ? `Rank #${selected.rank} · ${selected.totalPoints} pts${selected.available ? '' : ' · comparison unavailable'}`
+      : (compareSearchQuery ? 'No participants match that search.' : 'Select a participant to compare.');
+
+    renderComparisonSummary(document.getElementById('selectedBracketSummary'), selected, false);
+
+    renderBracketBoard(document.getElementById('selectedBracketPanel'), selected, false);
+  }
+
+  function renderComparisonPicker() {
+    const select = document.getElementById('compareSelect');
+    if (!select || !comparisonData) return;
+
+    const filtered = comparisonData.participants.filter(participant =>
+      participant.name.toLowerCase().includes(compareSearchQuery.toLowerCase())
+    );
+
+    if (!filtered.some(participant => participant.name === selectedComparisonName)) {
+      selectedComparisonName = filtered.length ? filtered[0].name : '';
+    }
+
+    if (!filtered.length) {
+      select.innerHTML = '<option value="">No matching participants</option>';
+      return;
+    }
+
+    select.innerHTML = filtered.map(participant => {
+      const suffix = participant.available ? `#${participant.rank} · ${participant.totalPoints} pts` : 'R1+R2 only';
+      const selected = participant.name === selectedComparisonName ? ' selected' : '';
+      return `<option value="${escapeHtml(participant.name)}"${selected}>${escapeHtml(participant.name)} — ${escapeHtml(suffix)}</option>`;
+    }).join('');
+  }
+
+  function getSelectedComparisonParticipant() {
+    if (!comparisonData) return null;
+    return comparisonData.participants.find(participant => participant.name === selectedComparisonName) || comparisonData.participants[0] || null;
+  }
+
+  function renderBracketBoard(container, bracket, isActual) {
+    if (!container) return;
+    if (!bracket) {
+      container.innerHTML = '<div class="comparison-unavailable"><div class="comparison-unavailable-title">Comparison unavailable</div><div class="comparison-unavailable-copy">Bracket data could not be loaded.</div></div>';
+      return;
+    }
+
+    if (!bracket.available) {
+      container.innerHTML = `
+        <div class="comparison-unavailable">
+          <div class="comparison-unavailable-title">No bracket sheet available</div>
+          <div class="comparison-unavailable-copy">${escapeHtml(bracket.message || 'Only Round of 64 and Round of 32 totals were available for this participant.')}</div>
+        </div>`;
+      return;
+    }
+
+    const regionCards = comparisonData.regionOrder.map(region => renderRegionCard(region, bracket.regions[region])).join('');
+    const futureCards = (bracket.futureGroups || []).map(group => renderFutureCard(group, isActual)).join('');
+
+    container.innerHTML = `
+      <div class="comparison-region-grid">${regionCards}</div>
+      <div class="comparison-future-strip">${futureCards}</div>
+    `;
+  }
+
+  function renderRegionCard(region, regionData) {
+    const roundColumns = comparisonData.roundOrder.map(round => {
+      const entries = ((regionData || {})[round.key] || []).map((entry, index) =>
+        renderPickChip(entry, {
+          roundKey: round.key,
+          index,
+          columnSize: ((regionData || {})[round.key] || []).length,
+        })
+      ).join('');
+      return `
+        <div class="comparison-round-column comparison-round-column-${round.key.toLowerCase()}">
+          <div class="comparison-round-heading">${round.label}<span>${round.points} pt${round.points === 1 ? '' : 's'}</span></div>
+          <div class="comparison-round-stack">${entries}</div>
+        </div>`;
+    }).join('');
+
+    return `
+      <div class="comparison-region-card">
+        <div class="comparison-region-header">${escapeHtml(region)}</div>
+        <div class="comparison-round-columns comparison-round-columns-tree">${roundColumns}</div>
+      </div>`;
+  }
+
+  function renderFutureCard(group) {
+    const entries = (group.entries || []).map((entry, index) =>
+      renderPickChip(entry, {
+        roundKey: entry.round || 'future',
+        index,
+        columnSize: (group.entries || []).length,
+      })
+    ).join('');
+    return `
+      <div class="comparison-future-card">
+        <div class="comparison-future-title">${escapeHtml(group.title)}</div>
+        <div class="comparison-future-entries">${entries}</div>
+      </div>`;
+  }
+
+  function renderPickChip(entry, options) {
+    const status = entry && entry.status ? entry.status : 'empty';
+    const team = entry && entry.team ? entry.team : '—';
+    const points = entry && typeof entry.pointsAwarded === 'number' ? entry.pointsAwarded : 0;
+    const title = entry && entry.actualTeam ? ` title="Actual: ${escapeHtml(entry.actualTeam)}"` : '';
+    const roundKey = options && options.roundKey ? options.roundKey.toLowerCase() : 'generic';
+    return `
+      <div class="comparison-pick-chip comparison-pick-chip-${roundKey} ${status}"${title}>
+        <span class="comparison-pick-points">+${points}</span>
+        <span class="comparison-pick-name">${escapeHtml(team)}</span>
+      </div>`;
+  }
+
+  function getBracketStats(bracket) {
+    if (!comparisonData || !bracket || !bracket.available) return null;
+
+    let correct = 0;
+    let incorrect = 0;
+    let pending = 0;
+    let totalPoints = 0;
+
+    comparisonData.regionOrder.forEach(region => {
+      const regionData = bracket.regions && bracket.regions[region] ? bracket.regions[region] : {};
+      comparisonData.roundOrder.forEach(round => {
+        const entries = regionData[round.key] || [];
+        entries.forEach(entry => {
+          totalPoints += entry.pointsAwarded || 0;
+          if (entry.status === 'correct') correct += 1;
+          else if (entry.status === 'incorrect') incorrect += 1;
+          else if (entry.status === 'pending') pending += 1;
+        });
+      });
+    });
+
+    (bracket.futureGroups || []).forEach(group => {
+      (group.entries || []).forEach(entry => {
+        totalPoints += entry.pointsAwarded || 0;
+        if (entry.status === 'correct') correct += 1;
+        else if (entry.status === 'incorrect') incorrect += 1;
+        else if (entry.status === 'pending') pending += 1;
+      });
+    });
+
+    const decided = correct + incorrect;
+    const accuracy = decided ? Math.round((correct / decided) * 100) : 0;
+
+    return {
+      correct,
+      incorrect,
+      pending,
+      decided,
+      accuracy,
+      totalPoints,
+    };
+  }
+
+  function renderComparisonSummary(container, bracket, isActual) {
+    if (!container) return;
+
+    const stats = getBracketStats(bracket);
+    if (!bracket) {
+      container.innerHTML = '<span class="comparison-summary-pill muted">Search to load a bracket</span>';
+      return;
+    }
+
+    if (!bracket.available || !stats) {
+      container.innerHTML = '<span class="comparison-summary-pill muted">R1 and R2 totals only</span>';
+      return;
+    }
+
+    if (isActual) {
+      container.innerHTML = [
+        `<span class="comparison-summary-pill strong">${stats.correct} decided slots</span>`,
+        `<span class="comparison-summary-pill">${stats.totalPoints} points locked</span>`,
+        '<span class="comparison-summary-pill">Blue cards are the truth board</span>'
+      ].join('');
+      return;
+    }
+
+    container.innerHTML = [
+      `<span class="comparison-summary-pill strong">${stats.accuracy}% accuracy</span>`,
+      `<span class="comparison-summary-pill">${stats.correct} right</span>`,
+      `<span class="comparison-summary-pill danger">${stats.incorrect} missed</span>`,
+      `<span class="comparison-summary-pill">${stats.totalPoints} points banked</span>`
+    ].join('');
   }
 
   // ---- Leaderboard Table ----
@@ -528,6 +764,24 @@
     document.getElementById('sortSelect').addEventListener('change', (e) => {
       currentSort = e.target.value;
       applyFilters();
+    });
+
+    document.querySelectorAll('.view-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeView = btn.dataset.view;
+        renderViewTabs();
+        syncViewState();
+      });
+    });
+
+    document.getElementById('compareSearchInput').addEventListener('input', (e) => {
+      compareSearchQuery = e.target.value.trim();
+      renderComparisonView();
+    });
+
+    document.getElementById('compareSelect').addEventListener('change', (e) => {
+      selectedComparisonName = e.target.value;
+      renderComparisonView();
     });
 
     // Modal close

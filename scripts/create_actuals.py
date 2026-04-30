@@ -50,7 +50,9 @@ for r, v in {5:'Duke', 13:'UConn'}.items():
 # East E8 winner (Col E)
 ws.cell(row=5, column=5, value='UConn')
 
-# F4 (April 4, today) and Championship (April 6) left blank
+# Final Four winners
+ws.cell(row=5, column=6, value='UConn')
+ws.cell(row=5, column=8, value='Michigan')
 
 # West R64 winners (Col L = 12)
 for r, v in {5:'Arizona', 7:'Utah St', 9:'High Point', 11:'Arkansas',
@@ -211,10 +213,9 @@ games = [
     ['Elite 8', 'West', 1, 'Arizona', 79, 2, 'Purdue', 64],
     ['Elite 8', 'South', 3, 'Illinois', 71, 9, 'Iowa', 59],
     ['Elite 8', 'Midwest', 1, 'Michigan', 95, 6, 'Tennessee', 62],
-    # Final Four - April 4 (today)
-    ['Final Four', 'Semifinal 1', None, 'UConn vs Illinois', None, None, 'TBD', None],
-    ['Final Four', 'Semifinal 2', None, 'Arizona vs Michigan', None, None, 'TBD', None],
-    ['Championship', 'Final', None, 'TBD', None, None, 'TBD', None],
+    ['Final Four', 'Semifinal 1', 2, 'UConn', 71, 3, 'Illinois', 62],
+    ['Final Four', 'Semifinal 2', 1, 'Michigan', 91, 1, 'Arizona', 73],
+    ['Championship', 'Final', None, 'UConn', None, None, 'Michigan', None],
 ]
 
 for row_idx, game in enumerate(games, 2):
@@ -244,8 +245,8 @@ ws3['A8'] = 'West Champion: (1) Arizona'
 ws3['A9'] = 'Midwest Champion: (1) Michigan'
 ws3['A11'] = 'Championship Game - April 6, 2026 (8:50 PM ET):'
 ws3['A11'].font = Font(bold=True)
-ws3['A12'] = 'Winner of Semifinal 1 vs Winner of Semifinal 2'
-ws3['A14'] = 'NOTE: Results through Elite 8 are final. Final Four is today!'
+ws3['A12'] = '(2) UConn vs (1) Michigan'
+ws3['A14'] = 'NOTE: Final Four results are final. Championship is next.'
 ws3['A14'].font = Font(bold=True, color='FF0000')
 
 wb.save('files/2026_NCAA_Actual_Results.xlsx')
